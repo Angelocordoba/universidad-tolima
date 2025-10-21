@@ -1,17 +1,10 @@
-
-import { VitePWA } from 'vite-plugin-pwa';
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
- plugins: [react()],
-  build: {
-    outDir: "dist"
-  },
-  server: {
-    port: 5173
-  },
   plugins: [
+    react(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
@@ -37,4 +30,10 @@ export default defineConfig({
       },
     }),
   ],
-});
+  build: {
+    outDir: 'dist',
+  },
+  server: {
+    port: 5173,
+  },
+})
