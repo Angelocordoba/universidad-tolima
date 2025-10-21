@@ -1,7 +1,16 @@
 
 import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-export default {
+export default defineConfig({
+ plugins: [react()],
+  build: {
+    outDir: "dist"
+  },
+  server: {
+    port: 5173
+  },
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
@@ -28,4 +37,4 @@ export default {
       },
     }),
   ],
-};
+});
