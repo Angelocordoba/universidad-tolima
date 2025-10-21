@@ -14,12 +14,22 @@ import exportRoutes from "./routes/export.js";
 import usuariosRoutes from "./routes/usuarios.js";
 import 'dotenv/config';
 
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "ut-visitantes-web", "dist", "index.html"));
+});
+
 app.use(cors());
 app.use(express.json());
+app.use(express.static("ut-visitantes-web/dist"));
 
 // Rutas principales
 app.use("/api/auth", authRoutes);
